@@ -72,3 +72,19 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 4.commit-ID通过git log查看提交记录获得，本质是一串哈希值
 
 
+## 提交修改
+>$ git commit -m "commit log" #提交暂存区的文件，生成新的提交记录  
+>$ git commit -a -m "commit log" #add与commit步骤合并为一步
+
+## 删除文件
+>$ git rm file #删除file文件并停止追溯，相当于`rm file | git add file`  
+>$ git rm --cached file #保留file文件并停止追溯，用于本来ignore的文件被不小心提交了  
+>
+>$ git rm log/\*.log #删除log目录下所有.log文件并停止追溯  
+>$ git rm \*~ #删除所有~结尾的文件并停止追溯  
+>#通配符星号前面的反斜杠是必须的，遵循git要求
+
+## 重命名文件
+>$ git mv file_from file_to #重命名file_from为file_to,相当于`rm file_from file_to | git rm file_from | git add file_to`  
+
+## 查看提交记录
