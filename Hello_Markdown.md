@@ -82,3 +82,15 @@ Markdown插入图片语法 `![图片替代文字](图片链接 "图片title")`
 - [x] task1
 - [ ] task2
 - [ ] task3
+
+# Markdown表格
+使用三个或者多个连字符`---`创建每列的标题，使用管道`|`分割每列
+> `| name | age | sex |`  
+> `|------|-----|-----|`  
+> `| joey |  30 | male |`  
+> `| baby |  30 | femal |`  
+> 效果如下：  
+> | name | age | sex |  
+> |------|-----|-----|  
+> | joey |  30 | male |  
+> | baby |  30 | femal |  
