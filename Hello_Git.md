@@ -88,3 +88,42 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 >$ git mv file_from file_to #重命名file_from为file_to,相当于`rm file_from file_to | git rm file_from | git add file_to`  
 
 ## 查看提交记录
+>$ git log #查看所有提交记录  
+>$ git log -2 #查看最近两次提交记录  
+>$ git log -p #查看所有提交记录，并显示详细diff  
+>$ git log -p -2 #查看最近2次提交记录，并显示详细diff  
+>$ git log --stat #查看所有提交记录，并简要显示文件修改数量  
+>$ git log -- files #查看所有和files相关的提交记录  
+>$ git log -S function_name #查看所有代码中和function_name字符串相关的提交记录  
+>$ git log --grep string #查看所有提交日志中包含string的提交记录
+>$ git log --pretty=oneline #查看所有提交记录，每条记录用一行简要显示  
+>$ git log --pretty=short #查看所有提交记录，short模式显示 
+>$ git log --pretty=full  #查看所有提交记录，full模式显示
+>$ git log --pretty=fuller  #查看所有提交记录，fuller模式显示  
+>$ git log --pretty=format:"%h -%an ，$ar : %s"  #按照{缩略哈希值-作者名字，作者相对时间：日志log}格式输出log  
+>$ git log --pretty=oneline --graph #ascii码图像化commit过程  
+
+--pretty=format支持的百分符号如下：
+|百分符号|描述|
+|-----|-----|
+|%H|哈希值|
+|%h|简要哈希值|
+|%T|树哈希值|
+|%t|简要树哈希值|
+|%P|父哈希值|
+|%p|简要父哈希值|
+|%an|作者名字|
+|%ae|作者邮箱|
+|%ad|作者日期|
+|%ar|作者相对日期|
+|%cn|提交者名字|
+|%ce|提交者邮箱|
+|%cd|提交者日期|
+|%cr|提交者相对日期|
+|%s|日志log|
+
+## 撤回
+>$ git commit --amend  #对上一次提交进行修正， 一般用来修正忘记添加的文件，或者修改上次提交的日志内容  
+>$ git restore --staged file  #撤销之前add操作的file文件  
+>$ git restore file  #撤销工作区的任何修改  
+
