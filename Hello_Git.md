@@ -94,14 +94,14 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 >$ git log -p -2 #查看最近2次提交记录，并显示详细diff  
 >$ git log --stat #查看所有提交记录，并简要显示文件修改数量  
 >$ git log -- files #查看所有和files相关的提交记录  
->$ git log -S function_name #查看所有代码中和function_name字符串相关的提交记录  
->$ git log --grep string #查看所有提交日志中包含string的提交记录
+>$ git log -S function_name #查看所有代码中和`function_name`字符串相关的提交记录  
+>$ git log --grep string #查看所有提交日志中包含`string`的提交记录  
 >$ git log --pretty=oneline #查看所有提交记录，每条记录用一行简要显示  
->$ git log --pretty=short #查看所有提交记录，short模式显示 
->$ git log --pretty=full  #查看所有提交记录，full模式显示
->$ git log --pretty=fuller  #查看所有提交记录，fuller模式显示  
->$ git log --pretty=format:"%h -%an ，$ar : %s"  #按照{缩略哈希值-作者名字，作者相对时间：日志log}格式输出log  
->$ git log --pretty=oneline --graph #ascii码图像化commit过程  
+>$ git log --pretty=short #查看所有提交记录，`short`模式显示  
+>$ git log --pretty=full  #查看所有提交记录，`full`模式显示  
+>$ git log --pretty=fuller  #查看所有提交记录，`fuller`模式显示  
+>$ git log --pretty= oneline --graph #ascii码图像化commit过程  
+>$ git log --pretty=format:"%h -%an ，$ar : %s"  #按照{缩略哈希值-作者名字，作者相对时间：日志log}格式输出log    
 
 --pretty=format支持的百分符号如下：
 |百分符号|描述|
@@ -126,4 +126,11 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 >$ git commit --amend  #对上一次提交进行修正， 一般用来修正忘记添加的文件，或者修改上次提交的日志内容  
 >$ git restore --staged file  #撤销之前add操作的file文件  
 >$ git restore file  #撤销工作区的任何修改  
+
+## 远程仓库
+远程仓库是用于和其他协作者分享你的工作，相当于是多方维护的一个共享仓库。
+
+### 查看远程仓库
+>$ git remote #显示远程仓库的shortname， clone后远程仓库默认为`origin`  
+>$ git remote -v #显示远程仓库的shortname以及完整URL信息  
 
