@@ -134,3 +134,53 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 >$ git remote #显示远程仓库的shortname， clone后远程仓库默认为`origin`  
 >$ git remote -v #显示远程仓库的shortname以及完整URL信息  
 
+### 增加远程仓库
+>$ git remote add pb `https://github.com/pendingbit/helloworld`
+
+### 从远程仓库获取数据
+>$ git fetch <remote>
+>$ git pull <remote>
+
+### 推送数据到远程仓库
+>$ git push <remote> <branch>
+
+### 检阅一个远程仓库
+>$ git remote show <remote>
+
+### 重命名远程仓库
+>$ git remote rename oldname newname
+
+### 删除远程仓库
+>$ git remote remove name
+
+## TAG
+### 查看tag
+>git tag  #查看所有打上tag软件版本  
+>git tag -l "v1.8.5* #查看所有匹配v1.8.5开头的tag  
+>git show v1.4 #查看某一个具体的tag信息
+
+### 创建tag
+>git tag -a v1.4 -m "my version 1.4"  #annotated tag 
+>git tag v1.4-lw #lightweight tag  
+>git tag -a v1.2 9fce02 #对之前的某一次提交打tag  
+
+### 分享tag
+>git push origin `tagname` #推送某一个tag  
+>git push --tags #推送所有tag  
+
+### 删除tag
+>git tag `-d` v1.4-lw
+
+### checkout tag
+>git checkout v1.4-lw #注意此时detached HEAD 状态 ， 在此基础上修改无法提交  
+
+
+## 重命名
+>git config --global alias.co checkout  
+>git config --global alias.br branch  
+>git config --global alias.ci commit  
+>git config --global alias.st status
+>git config --global alias.unstage 'reset HEAD --'  
+>git config --global alias.last 'log -1 HEAD'  
+
+# GIT 分支
