@@ -89,6 +89,7 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 查看提交记录
 >$ git log #查看所有提交记录  
+>$ git log branchname #查看指定分支的log  
 >$ git log -2 #查看最近两次提交记录  
 >$ git log -p #查看所有提交记录，并显示详细diff  
 >$ git log -p -2 #查看最近2次提交记录，并显示详细diff  
@@ -155,32 +156,117 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## TAG
 ### 查看tag
->git tag  #查看所有打上tag软件版本  
->git tag -l "v1.8.5* #查看所有匹配v1.8.5开头的tag  
->git show v1.4 #查看某一个具体的tag信息
+>$ git tag  #查看所有打上tag软件版本  
+>$ git tag -l "v1.8.5* #查看所有匹配v1.8.5开头的tag  
+>$ git show v1.4 #查看某一个具体的tag信息
 
 ### 创建tag
->git tag -a v1.4 -m "my version 1.4"  #annotated tag 
->git tag v1.4-lw #lightweight tag  
->git tag -a v1.2 9fce02 #对之前的某一次提交打tag  
+>$ git tag -a v1.4 -m "my version 1.4"  #annotated tag   
+>$ git tag v1.4-lw #lightweight tag  
+>$ git tag -a v1.2 9fce02 #对之前的某一次提交打tag  
 
 ### 分享tag
->git push origin `tagname` #推送某一个tag  
->git push --tags #推送所有tag  
+>$ git push origin `tagname` #推送某一个tag  
+>$ git push --tags #推送所有tag  
 
 ### 删除tag
->git tag `-d` v1.4-lw
+>$ `git tag -d v1.4-lw`
 
 ### checkout tag
->git checkout v1.4-lw #注意此时detached HEAD 状态 ， 在此基础上修改无法提交  
+>$ git checkout v1.4-lw #注意此时detached HEAD 状态 ， 在此基础上修改无法提交  
 
 
 ## 重命名
->git config --global alias.co checkout  
->git config --global alias.br branch  
->git config --global alias.ci commit  
->git config --global alias.st status
->git config --global alias.unstage 'reset HEAD --'  
->git config --global alias.last 'log -1 HEAD'  
+>$ git config --global alias.co checkout  
+>$ git config --global alias.br branch  
+>$ git config --global alias.ci commit  
+>$ git config --global alias.st status
+>$ git config --global alias.unstage 'reset HEAD --'  
+>$ git config --global alias.last 'log -1 HEAD'  
 
-# GIT 分支
+# GIT Branch
+## 创建分支
+当前状态
+![branch 1](./pic/branch_1.jpg "current status")
+>$ `git branch testing` #创建testing分支  
+> 新创建的分支本质就是创建了新命名的指针指向当前commit；HEAD是个特殊指针，永远指向当前所处的commit
+
+![branch 2](./pic/branch_2.jpg "create testing branch")
+
+## 切换分支
+>$ `git checkout testing` #切换到testing分支;HEAD指向testing;并且工作区所有内容会重置为分支版本;`切换分支前clean working state`  
+>$ `git switch testing` #同上  
+>$ `git checkout -b newbranchname` #创建并切换到新的分支  
+>$ `git switch -c newbranchname`  #同上  
+>$ `git switch -` #切换回上一个分支
+
+创建testing分支
+![branch 3](./pic/branch_3.jpg "switch branch")
+在不同的分支上进行各自开发和commit  
+![branch 4](./pic/branch_4.jpg "separate branch")
+
+## branching and Merging
+
+![simple commit history](./pic/simple_commit_history.jpg "simple commit history")
+一个简单的commit，c0->c1->c2  
+此时需要开发#53号特性，创建`iss53`分支
+>$ `git checkout -b iss53`   
+>$ `git branch iss53 | git checkout iss53` #功能同上  
+![create a new branch pointer](./pic/create_a_new_branch_pointer.jpg "create a new branch pointer")  
+
+在iss53分支上进行了提交
+>$ ***do some job***  
+>$ `git commit -a -m "new function in [issue 53]"`  
+![work forward in iss53](./pic/work_forward_in_iss53.jpg "work forward in iss53")  
+
+在master分支c2版本发现了一个bug，创建hotfix分支来解决  
+>$ `git checkout master`  
+>$ `git checkout -b hotfix`  
+>$ ***do some fix***  
+>$ `git commit -a -m "fix bug"`  
+![hotfix branch based on master](./pic/hotfix_branch_based_on_master.jpg "hotfix branch based on master")  
+
+bug修复完毕，需要合并到master分支去
+>$ `git checkout master`  
+>$ `git merge hotfix`  #快速前进合并fast-forward  
+![master is fast-forwarded to hotfix](./pic/master_is_fast_forwarded_to_hotfix.jpg "master is fast-forwarded to hotfix")  
+
+hotfix分支已经无意义，将其删除,切换到iss53分支继续工作 
+>$ `git branch -d hotfix`  
+>$ `git checkout iss53`  
+>$ ***do some job***  
+>$ `git commit -a -m "finish function [issue53]"`  
+![delete hotfix and continues on iss53](./pic/delete_hotfix_and_continues_on_iss53.jpg "delete hotfix and continues on iss53")  
+
+iss53分支工作完成，合并到master分支并删除iss53分支     
+>$ `git checkout master`  
+>$ `git merge iss53`  #没有冲突的情况下，git merge自动创建合并commit  
+>$ `git branch -d iss53`
+![merge commit](./pic/merge_commit.jpg "merge commit")  
+
+通过三个快照进行合并，`master iss53` 以及他们的公共祖先快照`c2`  
+![three snapshots used in a typical merge](./pic/three_snapshots_used_in_a_typical_merge.jpg "three snapshots used in a typical merge")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
