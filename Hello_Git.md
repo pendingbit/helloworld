@@ -247,6 +247,33 @@ iss53分支工作完成，合并到master分支并删除iss53分支
 通过三个快照进行合并，`master iss53` 以及他们的公共祖先快照`c2`  
 ![three snapshots used in a typical merge](./pic/three_snapshots_used_in_a_typical_merge.jpg "three snapshots used in a typical merge")
 
+## 合并冲突基础
+如果iss53分支和hotfix分支都修改某个文件的同一部分，那么将出现合并冲突问题
+>$ `git merge iss53`  
+>Auto-merging test.c  
+>CONFILCT(content):Merge conflict in test.c  
+>Automatic merge failed; fix conflicts and then commit the result.  
+
+使用git status查看冲突的文件  
+>$ `git status`  
+>On branch master  
+>You have unmerged paths.  
+>  (fix conflicts and run "git commit")  
+>Unmerged paths:  
+>  (use "git add <file>..." to mark resolution)  
+>  both modified: index.html  
+>no changes added to commit (use "git add" and/or "git commit -a")  
+
+git将自动添加两个版本内容到冲突文件中，格式如下
+>`<<<<<<< HEAD:test.c`  
+> abcdefg  = 1;  
+>`=======`  
+> abcdeft = 2;  
+>`>>>>>>> iss53:index.html`  
+
+使用编辑工具进行修改，其中`<<<<<<< HEAD:test.c` , `=======` , `>>>>>>> iss53:index.html`都是辅助表示，需要删除。
+
+修改完毕后，通过add/commit 操作完成此次合并。
 
 
 
