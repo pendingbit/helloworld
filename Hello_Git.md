@@ -275,6 +275,32 @@ git将自动添加两个版本内容到冲突文件中，格式如下
 
 修改完毕后，通过add/commit 操作完成此次合并。
 
+## 分支管理
+### 查看branch
+>$ `git branch` #查看所有分支（仅显示分支名） 
+>$ `git branch -v` #查看所有分支(显示分支名和提交信息)  
+>$ `git branch --all` #查看所有分支（包括远程和本地）
+>$ `git branch --merged` #查看已经合并到HEAD的分支   
+>$ `git branch --no-merged` #查看未合并到HEAD的分支  
+>$ `git branch --merged [branchname]` #查看已经合并到指定分支的分支  
+>$ `git branch --no-merged [branchname]` #查看未合并到指定分支的分支  
+
+## 删除branch  
+>$ `git branch -d [branchname]` #删除指定分支，如果指定分支尚未合并则删除操作失败。  
+>$ `git branch -D [branchname]` #删除指定尚未合并的分支
+
+## 修改branch名  
+**禁止修改其他贡献者正在使用的分支名字**  
+**禁止修改其他贡献者正在使用的分支名字**  
+**禁止修改其他贡献者正在使用的分支名字**  
+>$ `git branch --move bad-branch-name corrected-branch-name`  #在本地修改分支名字  
+>$ `git push --set-upstream origin corrected-branch-name` #推送正确名字的分支到远程  
+>$ `git push origin --delete bad-branch-name` #删除错误名字的分支到远程  
+
+
+
+
+
 
 
 
