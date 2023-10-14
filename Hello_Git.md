@@ -297,6 +297,54 @@ git将自动添加两个版本内容到冲突文件中，格式如下
 >$ `git push --set-upstream origin corrected-branch-name` #推送正确名字的分支到远程  
 >$ `git push origin --delete bad-branch-name` #删除错误名字的分支到远程  
 
+## 分支工作流程  
+git可以很方便的进行分支合并，所以在开发一个复杂的项目的时候，往往使用多个分支来维护项目的不同周期。  
+**举个例子：**  
+master分支是稳定版本，用于release  
+develop分支是开发分支  
+topic分支可能是某个feature或者issue  
+
+### Long-running 分支 线性视图
+![linear view](./pic/linear_view_of_progressive_stability_branching.jpg "linear view of progressive-stability branching")
+
+### Long-running 分支 发射筒视图
+![silo view](./pic/silo_view_of_progressive_stability_branching.jpg "silo view of progressive-stability branching")
+
+### Topic分支  
+Topic分支是一种为了开发某个feature、解决某个issue、修改某个bug等等创建的临时分支。  （因为branch的开销非常低，所以善用branch进行阶段性的开发、合并，可以帮助开发者有效管理开发之路。）  
+
+**举个例子:**
+master分支是主版本  
+iss91分支是解决#91 issue所创建的分支  
+iss91v2分支是解决#91 issue所创建的第二种方案  
+dumbidea分支是突然出现的灵感，可能没有什么意义，可能是绝佳的设计  
+
+![multiple topic branches](./pic/multiple_topic_branches.jpg "multiple topic branches")
+
+
+最终合并dumbidea 和 iss91v2两个分支到master，同时删除iss91分支
+![merging dumbidea and iss91v2 deleate iss91](./pic/merging_dumbidea_and_iss91v2_deleate_iss91.jpg "merging dumbidea and iss91v2 deleate iss91")
+
+
+## 远程分支  
+远程分支是远程仓库所包含的分支，可以通过一下命令查看特定远程仓库的分支、标签等信息。  
+>$ `git ls-remote <remotename>`  
+>$ `git remote show <remotename>`  
+
+### remote-tracking 分支  
+remote-tracking分支是远程服务器分支的一个标记，由`remote/brach` 显示。`origin/iss53`代表origin远程仓库的iss53分支。每次和远程仓库通信， remote-tracking状态都会被更新。  
+
+**举个例子**  
+master这个分支你在local开发， 别人也开发了并推送到remote
+  
+![local and remote](./pic/local_and_remote_work_can_diverge.jpg "local and remote")
+
+此时可以通过`git fetch remotename`命令来同步remote-track分支的最新数据。  
+![git fetch](./pic/git_fetch_update_remote_tracking_branches.jpg "git fetch")   
+
+
+
+
 
 
 
