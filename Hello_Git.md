@@ -332,7 +332,7 @@ dumbidea分支是突然出现的灵感，可能没有什么意义，可能是绝
 >$ `git remote show <remotename>`  
 
 ### remote-tracking 分支  
-remote-tracking分支是远程服务器分支的一个标记，由`remote/brach` 显示。`origin/iss53`代表origin远程仓库的iss53分支。每次和远程仓库通信， remote-tracking状态都会被更新。  
+remote-tracking分支是远程服务器分支的一个标记，由`remote/branch` 显示。`origin/iss53`代表origin远程仓库的iss53分支。每次和远程仓库通信， remote-tracking状态都会被更新。  
 
 **举个例子**  
 master这个分支你在local开发， 别人也开发了并推送到remote
@@ -342,6 +342,13 @@ master这个分支你在local开发， 别人也开发了并推送到remote
 此时可以通过`git fetch remotename`命令来同步remote-track分支的最新数据。  
 ![git fetch](./pic/git_fetch_update_remote_tracking_branches.jpg "git fetch")   
 
+### 推送分支  
+>$ `git push remotename branchname` #将本地分支推送到远程仓库  
+>$ `git push remotename branchname:newname` #将本地分支推送到远程仓库，该分支在远程仓库重命名未  
+>$ `git fetch remotename` #从远程仓库获得最新remote-tracking分支  
+>通过`get fetch`获得的remote-tracking分支的时候，比如`origin/iss53`,该分支在本地并不可以编辑开发。  
+>如果想要将`origin/iss53`合并到自己分支，可以使用`git merge origin/iss53`命令  
+>如果想要一个自己继续开发的iss53分支，可以使用`git checkout -b iss53 origin/iss53`命令
 
 
 
