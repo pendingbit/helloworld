@@ -384,17 +384,62 @@ TIP:
 ### 删除远程分支  
 >$ `git push origin --delete serverfix` #删除远程仓库origin 的 serverix分支  
 
+## Rebasing 
+**rebasing和merge一样都是将一个分支合并到另一个分支。** 
 
 
+>merge是将一个分支的末次commit合并到另一个分支去。  
+>$ `git checkout master`  
+>$ `git merge experiment`  
+![merging](./pic/merging.jpg "git merge")   
+
+>rebase是将一个分支的所有commit移动到另一个分支去，整个分支作为另一个分支线性工作的一部分。  
+>rebase 会使整个工作过程变得线性、整洁(删除原来的分支commit信息)。  
+>**!!!切记!!!**   Do not rebase commits that exist outside your repository and that people may have based work on.  
+>**!!!切记!!!**   Do not rebase commits that exist outside your repository and that people may have based work on.  
+>**!!!切记!!!**   Do not rebase commits that exist outside your repository and that people may have based work on.  
+>$ `git checkout experiment`  
+>$ `git rebase master`  
+>$ `git checkout master`  
+>$ `git merge experiment`
+![rebasing](./pic/rebasing.jpg "git rebase")   
+![fast_forwarding_after_rebase](./pic/fast_forwarding_after_rebase.jpg "git rebase")   
 
 
+### 强大的rebase
+rebase可以跨分支移动。举个例子：  
 
 
+>现在有如下三个分支，其中client分支基于server分支创建
+![before_rebase](./pic/before_rebase.jpg "before rebase")   
+
+>将client分支rebase到master分支  
+>$ `git checkout client`  
+>$ `git rebase --onto master server client`  
+![after rebase client](./pic/after_rebase_client.jpg "after rebase client")   
 
 
+>快速合并master 
+>$ `git checkout master`  
+>$ `git merge client`  
+![after forward](./pic/after_forward.jpg "after forward")   
 
 
+>将server分支rebase到master分支  
+>$ `git checkout server`  
+>$ `git rebase master server `  
+![after rebase server](./pic/after_rebase_server.jpg "after rebase server")   
 
+
+>快速合并master，并删除server client分支  
+>$ `git checkout master`  
+>$ `git merge server`    
+>$ `git branch -d server`  
+>$ `git branch -d client`  
+![final_commit](./pic/final_commit.jpg "final_commit")   
+
+
+# ***rebase local changes before pushing to clean up your work, but never rebase anything that you’ve pushed somewhere.***
 
 
 
