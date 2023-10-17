@@ -279,6 +279,7 @@ git将自动添加两个版本内容到冲突文件中，格式如下
 ### 查看branch
 >$ `git branch` #查看所有分支（仅显示分支名） 
 >$ `git branch -v` #查看所有分支(显示分支名和提交信息)  
+>$ `git branch -vv` #查看所有分支（显示哪些关联远程）
 >$ `git branch --all` #查看所有分支（包括远程和本地）
 >$ `git branch --merged` #查看已经合并到HEAD的分支   
 >$ `git branch --no-merged` #查看未合并到HEAD的分支  
@@ -349,6 +350,40 @@ master这个分支你在local开发， 别人也开发了并推送到remote
 >通过`get fetch`获得的remote-tracking分支的时候，比如`origin/iss53`,该分支在本地并不可以编辑开发。  
 >如果想要将`origin/iss53`合并到自己分支，可以使用`git merge origin/iss53`命令  
 >如果想要一个自己继续开发的iss53分支，可以使用`git checkout -b iss53 origin/iss53`命令
+
+### 追踪分支  
+>$ `git checkout -b [branch] [romote]/[branch]` #从远程仓库拉取某个分支，用于自己开发  
+>$ `git checkout --track origin/serverfix` #从远程仓库拉去serverfix分支用于开发，这里使用`--track`参数   
+>$ `git checkout serverfix` #如果本地没有serverfix，远程仓库有唯一serverfix，那么也可直接`git checkout`来拉去远程分支  
+>$ `git checkout -b sf origin/serverfix` #从远程仓库origin拉取serverfix分支，并重命名为sf  
+>$ `git branch -u origin/serverfix` #设置本地分支关联到远程origin仓库的serverfix分支，或者修改本地分支关联的远程仓库分支  
+> `-u` 或者 `--set-upstream-to` 选项用于`git branch`命令关联本地分支与远程分支  
+> 
+
+TIP:
+> 已经关联远程分支,可以使用`@{u}`或者`@{upstream}` 来代表远程分支  
+> 举个例子：  
+> $ `git checkout master`
+> $ `git merge @{u}`  #作用如下  
+> $ `git merge origin/master`  
+
+查看本地和远程分支关联信息  
+>$ `git branch -vv` #查看所有本地分支，并显示相关联的原程分支，以及commit提交差异信息  
+    iss53 7e424c3 [origin/iss53: ahead 2] Add forgotten brackets  
+    master 1ae2a45 [origin/master] Deploy index fix    
+    serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] This should do it  
+    testing 5ea463a Try something new  
+`ahead 3`代表本地比远程分支多3次未推送的commit  
+`behind 1`代表本地比远程分支少同步1次commit  
+>$ `git fetch -all`;`git branch -vv` #在查看前先从拉去远程仓库最新数据，这样可以确保数据及时性  
+
+### Pulling  
+使用`git fetch`命令获取服务器数据时并不会修改本地数据，获得数据可以理解为只读数据，你需要通过`git merge`命令自行合并。  
+`git pull`命令等同于 `git fetch` + `git merge`  ，如合`git pull`不确定100%成功，建议分布执行`fetch` 和 `merge`  
+
+### 删除远程分支  
+>$ `git push origin --delete serverfix` #删除远程仓库origin 的 serverix分支  
+
 
 
 
