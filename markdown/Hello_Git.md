@@ -24,7 +24,7 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 |——`Staged`     代表文件已经修改且被暂存
 
 
-![git file](./pic/git_record_change.jpg "git file status")
+![git file](../pic/git_record_change.jpg "git file status")
 
 
 ## 查看文件状态
@@ -60,7 +60,7 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 >
 
 ## 查看代码差异
->$ git diff   #查看工作区与暂存区的文件差异  
+>$ git diff` #查看工作区与暂存区的文件差异      
 >$ git diff --staged  #查看暂存区与上一次提交记录的文件差异  
 >$ git diff HEAD^ HEAD #查看上次提交记录与其前一次提交记录的差异  
 >$ git diff commit-ID1 commit-ID2 #查看提交记录1到提交记录2的差异  
@@ -187,11 +187,11 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 # GIT Branch
 ## 创建分支
 当前状态
-![branch 1](./pic/branch_1.jpg "current status")
+![branch 1](../pic/branch_1.jpg "current status")
 >$ `git branch testing` #创建testing分支  
 > 新创建的分支本质就是创建了新命名的指针指向当前commit；HEAD是个特殊指针，永远指向当前所处的commit
 
-![branch 2](./pic/branch_2.jpg "create testing branch")
+![branch 2](../pic/branch_2.jpg "create testing branch")
 
 ## 切换分支
 >$ `git checkout testing` #切换到testing分支;HEAD指向testing;并且工作区所有内容会重置为分支版本;`切换分支前clean working state`  
@@ -201,51 +201,51 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 >$ `git switch -` #切换回上一个分支
 
 创建testing分支
-![branch 3](./pic/branch_3.jpg "switch branch")
+![branch 3](../pic/branch_3.jpg "switch branch")
 在不同的分支上进行各自开发和commit  
-![branch 4](./pic/branch_4.jpg "separate branch")
+![branch 4](../pic/branch_4.jpg "separate branch")
 
 ## branching and Merging
 
-![simple commit history](./pic/simple_commit_history.jpg "simple commit history")
+![simple commit history](../pic/simple_commit_history.jpg "simple commit history")
 一个简单的commit，c0->c1->c2  
 此时需要开发#53号特性，创建`iss53`分支
 >$ `git checkout -b iss53`   
 >$ `git branch iss53 | git checkout iss53` #功能同上  
-![create a new branch pointer](./pic/create_a_new_branch_pointer.jpg "create a new branch pointer")  
+![create a new branch pointer](../pic/create_a_new_branch_pointer.jpg "create a new branch pointer")  
 
 在iss53分支上进行了提交
 >$ ***do some job***  
 >$ `git commit -a -m "new function in [issue 53]"`  
-![work forward in iss53](./pic/work_forward_in_iss53.jpg "work forward in iss53")  
+![work forward in iss53](../pic/work_forward_in_iss53.jpg "work forward in iss53")  
 
 在master分支c2版本发现了一个bug，创建hotfix分支来解决  
 >$ `git checkout master`  
 >$ `git checkout -b hotfix`  
 >$ ***do some fix***  
 >$ `git commit -a -m "fix bug"`  
-![hotfix branch based on master](./pic/hotfix_branch_based_on_master.jpg "hotfix branch based on master")  
+![hotfix branch based on master](../pic/hotfix_branch_based_on_master.jpg "hotfix branch based on master")  
 
 bug修复完毕，需要合并到master分支去
 >$ `git checkout master`  
 >$ `git merge hotfix`  #快速前进合并fast-forward  
-![master is fast-forwarded to hotfix](./pic/master_is_fast_forwarded_to_hotfix.jpg "master is fast-forwarded to hotfix")  
+![master is fast-forwarded to hotfix](../pic/master_is_fast_forwarded_to_hotfix.jpg "master is fast-forwarded to hotfix")  
 
 hotfix分支已经无意义，将其删除,切换到iss53分支继续工作 
 >$ `git branch -d hotfix`  
 >$ `git checkout iss53`  
 >$ ***do some job***  
 >$ `git commit -a -m "finish function [issue53]"`  
-![delete hotfix and continues on iss53](./pic/delete_hotfix_and_continues_on_iss53.jpg "delete hotfix and continues on iss53")  
+![delete hotfix and continues on iss53](../pic/delete_hotfix_and_continues_on_iss53.jpg "delete hotfix and continues on iss53")  
 
 iss53分支工作完成，合并到master分支并删除iss53分支     
 >$ `git checkout master`  
 >$ `git merge iss53`  #没有冲突的情况下，git merge自动创建合并commit  
 >$ `git branch -d iss53`
-![merge commit](./pic/merge_commit.jpg "merge commit")  
+![merge commit](../pic/merge_commit.jpg "merge commit")  
 
 通过三个快照进行合并，`master iss53` 以及他们的公共祖先快照`c2`  
-![three snapshots used in a typical merge](./pic/three_snapshots_used_in_a_typical_merge.jpg "three snapshots used in a typical merge")
+![three snapshots used in a typical merge](../pic/three_snapshots_used_in_a_typical_merge.jpg "three snapshots used in a typical merge")
 
 ## 合并冲突基础
 如果iss53分支和hotfix分支都修改某个文件的同一部分，那么将出现合并冲突问题
@@ -306,10 +306,10 @@ develop分支是开发分支
 topic分支可能是某个feature或者issue  
 
 ### Long-running 分支 线性视图
-![linear view](./pic/linear_view_of_progressive_stability_branching.jpg "linear view of progressive-stability branching")
+![linear view](../pic/linear_view_of_progressive_stability_branching.jpg "linear view of progressive-stability branching")
 
 ### Long-running 分支 发射筒视图
-![silo view](./pic/silo_view_of_progressive_stability_branching.jpg "silo view of progressive-stability branching")
+![silo view](../pic/silo_view_of_progressive_stability_branching.jpg "silo view of progressive-stability branching")
 
 ### Topic分支  
 Topic分支是一种为了开发某个feature、解决某个issue、修改某个bug等等创建的临时分支。  （因为branch的开销非常低，所以善用branch进行阶段性的开发、合并，可以帮助开发者有效管理开发之路。）  
@@ -320,11 +320,11 @@ iss91分支是解决#91 issue所创建的分支
 iss91v2分支是解决#91 issue所创建的第二种方案  
 dumbidea分支是突然出现的灵感，可能没有什么意义，可能是绝佳的设计  
 
-![multiple topic branches](./pic/multiple_topic_branches.jpg "multiple topic branches")
+![multiple topic branches](../pic/multiple_topic_branches.jpg "multiple topic branches")
 
 
 最终合并dumbidea 和 iss91v2两个分支到master，同时删除iss91分支
-![merging dumbidea and iss91v2 deleate iss91](./pic/merging_dumbidea_and_iss91v2_deleate_iss91.jpg "merging dumbidea and iss91v2 deleate iss91")
+![merging dumbidea and iss91v2 deleate iss91](../pic/merging_dumbidea_and_iss91v2_deleate_iss91.jpg "merging dumbidea and iss91v2 deleate iss91")
 
 
 ## 远程分支  
@@ -338,10 +338,10 @@ remote-tracking分支是远程服务器分支的一个标记，由`remote/branch
 **举个例子**  
 master这个分支你在local开发， 别人也开发了并推送到remote
   
-![local and remote](./pic/local_and_remote_work_can_diverge.jpg "local and remote")
+![local and remote](../pic/local_and_remote_work_can_diverge.jpg "local and remote")
 
 此时可以通过`git fetch remotename`命令来同步remote-track分支的最新数据。  
-![git fetch](./pic/git_fetch_update_remote_tracking_branches.jpg "git fetch")   
+![git fetch](../pic/git_fetch_update_remote_tracking_branches.jpg "git fetch")   
 
 ### 推送分支  
 >$ `git push remotename branchname` #将本地分支推送到远程仓库  
@@ -391,7 +391,7 @@ TIP:
 >merge是将一个分支的末次commit合并到另一个分支去。  
 >$ `git checkout master`  
 >$ `git merge experiment`  
-![merging](./pic/merging.jpg "git merge")   
+![merging](../pic/merging.jpg "git merge")   
 
 >rebase是将一个分支的所有commit移动到另一个分支去，整个分支作为另一个分支线性工作的一部分。  
 >rebase 会使整个工作过程变得线性、整洁(删除原来的分支commit信息)。  
@@ -402,8 +402,8 @@ TIP:
 >$ `git rebase master`  
 >$ `git checkout master`  
 >$ `git merge experiment`
-![rebasing](./pic/rebasing.jpg "git rebase")   
-![fast_forwarding_after_rebase](./pic/fast_forwarding_after_rebase.jpg "git rebase")   
+![rebasing](../pic/rebasing.jpg "git rebase")   
+![fast_forwarding_after_rebase](../pic/fast_forwarding_after_rebase.jpg "git rebase")   
 
 
 ### 强大的rebase
@@ -411,24 +411,24 @@ rebase可以跨分支移动。举个例子：
 
 
 >现在有如下三个分支，其中client分支基于server分支创建
-![before_rebase](./pic/before_rebase.jpg "before rebase")   
+![before_rebase](../pic/before_rebase.jpg "before rebase")   
 
 >将client分支rebase到master分支  
 >$ `git checkout client`  
 >$ `git rebase --onto master server client`  
-![after rebase client](./pic/after_rebase_client.jpg "after rebase client")   
+![after rebase client](../pic/after_rebase_client.jpg "after rebase client")   
 
 
 >快速合并master 
 >$ `git checkout master`  
 >$ `git merge client`  
-![after forward](./pic/after_forward.jpg "after forward")   
+![after forward](../pic/after_forward.jpg "after forward")   
 
 
 >将server分支rebase到master分支  
 >$ `git checkout server`  
 >$ `git rebase master server `  
-![after rebase server](./pic/after_rebase_server.jpg "after rebase server")   
+![after rebase server](../pic/after_rebase_server.jpg "after rebase server")   
 
 
 >快速合并master，并删除server client分支  
@@ -436,7 +436,7 @@ rebase可以跨分支移动。举个例子：
 >$ `git merge server`    
 >$ `git branch -d server`  
 >$ `git branch -d client`  
-![final_commit](./pic/final_commit.jpg "final_commit")   
+![final_commit](../pic/final_commit.jpg "final_commit")   
 
 
 # ***rebase local changes before pushing to clean up your work, but never rebase anything that you’ve pushed somewhere.***
