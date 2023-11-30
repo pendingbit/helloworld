@@ -29,6 +29,7 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 查看文件状态
 >$ git status  
+
 >$ git status -s //精简显示 -s：short
 
 ## 暂存已修改文件或者新的文件
@@ -123,7 +124,7 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 >$ git log --pretty= oneline --graph #ascii码图像化commit过程  
 
->$ git log --pretty=format:"%h -%an ，$ar : %s"  #按照{缩略哈希值-作者名字，作者相对时间：日志log}格式输出log    
+>$ `git log --pretty=format:"%h -%an ，$ar : %s"`  #按照{缩略哈希值-作者名字，作者相对时间：日志log}格式输出log    
 
 
 --pretty=format支持的百分符号如下：
@@ -164,8 +165,9 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 >$ git remote add pb `https://github.com/pendingbit/helloworld`
 
 ### 从远程仓库获取数据
->$ git fetch <remote>
->$ git pull <remote>
+>$ git fetch remote  
+
+>$ git pull remote  
 
 ### 推送数据到远程仓库
 >$ git push <remote> <branch>
@@ -208,11 +210,17 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 重命名
 >$ git config --global alias.co checkout  
+
 >$ git config --global alias.br branch  
+
 >$ git config --global alias.ci commit  
+
 >$ git config --global alias.st status
+
 >$ git config --global alias.unstage 'reset HEAD --'  
+
 >$ git config --global alias.last 'log -1 HEAD'  
+
 
 # GIT Branch
 ## 创建分支
