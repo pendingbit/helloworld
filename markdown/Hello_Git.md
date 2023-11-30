@@ -61,8 +61,11 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 查看代码差异
 >$ git diff` #查看工作区与暂存区的文件差异      
+
 >$ git diff --staged  #查看暂存区与上一次提交记录的文件差异  
+
 >$ git diff HEAD^ HEAD #查看上次提交记录与其前一次提交记录的差异  
+
 >$ git diff commit-ID1 commit-ID2 #查看提交记录1到提交记录2的差异  
 
 `TIP:`   
@@ -74,13 +77,17 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 提交修改
 >$ git commit -m "commit log" #提交暂存区的文件，生成新的提交记录  
+
 >$ git commit -a -m "commit log" #add与commit步骤合并为一步
 
 ## 删除文件
 >$ git rm file #删除file文件并停止追溯，相当于`rm file | git add file`  
+
 >$ git rm --cached file #保留file文件并停止追溯，用于本来ignore的文件被不小心提交了  
->
+
+
 >$ git rm log/\*.log #删除log目录下所有.log文件并停止追溯  
+
 >$ git rm \*~ #删除所有~结尾的文件并停止追溯  
 >#通配符星号前面的反斜杠是必须的，遵循git要求
 
@@ -89,20 +96,35 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 查看提交记录
 >$ git log #查看所有提交记录  
+
 >$ git log branchname #查看指定分支的log  
+
 >$ git log -2 #查看最近两次提交记录  
+
 >$ git log -p #查看所有提交记录，并显示详细diff  
+
 >$ git log -p -2 #查看最近2次提交记录，并显示详细diff  
+
 >$ git log --stat #查看所有提交记录，并简要显示文件修改数量  
+
 >$ git log -- files #查看所有和files相关的提交记录  
+
 >$ git log -S function_name #查看所有代码中和`function_name`字符串相关的提交记录  
+
 >$ git log --grep string #查看所有提交日志中包含`string`的提交记录  
+
 >$ git log --pretty=oneline #查看所有提交记录，每条记录用一行简要显示  
+
 >$ git log --pretty=short #查看所有提交记录，`short`模式显示  
+
 >$ git log --pretty=full  #查看所有提交记录，`full`模式显示  
+
 >$ git log --pretty=fuller  #查看所有提交记录，`fuller`模式显示  
+
 >$ git log --pretty= oneline --graph #ascii码图像化commit过程  
+
 >$ git log --pretty=format:"%h -%an ，$ar : %s"  #按照{缩略哈希值-作者名字，作者相对时间：日志log}格式输出log    
+
 
 --pretty=format支持的百分符号如下：
 |百分符号|描述|
@@ -125,7 +147,9 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 撤回
 >$ git commit --amend  #对上一次提交进行修正， 一般用来修正忘记添加的文件，或者修改上次提交的日志内容  
+
 >$ git restore --staged file  #撤销之前add操作的file文件  
+
 >$ git restore file  #撤销工作区的任何修改  
 
 ## 远程仓库
@@ -133,6 +157,7 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ### 查看远程仓库
 >$ git remote #显示远程仓库的shortname， clone后远程仓库默认为`origin`  
+
 >$ git remote -v #显示远程仓库的shortname以及完整URL信息  
 
 ### 增加远程仓库
@@ -157,16 +182,21 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 ## TAG
 ### 查看tag
 >$ git tag  #查看所有打上tag软件版本  
+
 >$ git tag -l "v1.8.5* #查看所有匹配v1.8.5开头的tag  
+
 >$ git show v1.4 #查看某一个具体的tag信息
 
 ### 创建tag
 >$ git tag -a v1.4 -m "my version 1.4"  #annotated tag   
+
 >$ git tag v1.4-lw #lightweight tag  
+
 >$ git tag -a v1.2 9fce02 #对之前的某一次提交打tag  
 
 ### 分享tag
 >$ git push origin `tagname` #推送某一个tag  
+
 >$ git push --tags #推送所有tag  
 
 ### 删除tag
@@ -195,9 +225,13 @@ git管理的文件分为`tracked`和`untracked`两类，也就是被追溯和未
 
 ## 切换分支
 >$ `git checkout testing` #切换到testing分支;HEAD指向testing;并且工作区所有内容会重置为分支版本;`切换分支前clean working state`  
+
 >$ `git switch testing` #同上  
+
 >$ `git checkout -b newbranchname` #创建并切换到新的分支  
+
 >$ `git switch -c newbranchname`  #同上  
+
 >$ `git switch -` #切换回上一个分支
 
 创建testing分支
@@ -278,16 +312,24 @@ git将自动添加两个版本内容到冲突文件中，格式如下
 ## 分支管理
 ### 查看branch
 >$ `git branch` #查看所有分支（仅显示分支名） 
+
 >$ `git branch -v` #查看所有分支(显示分支名和提交信息)  
+
 >$ `git branch -vv` #查看所有分支（显示哪些关联远程）
+
 >$ `git branch --all` #查看所有分支（包括远程和本地）
+
 >$ `git branch --merged` #查看已经合并到HEAD的分支   
+
 >$ `git branch --no-merged` #查看未合并到HEAD的分支  
+
 >$ `git branch --merged [branchname]` #查看已经合并到指定分支的分支  
+
 >$ `git branch --no-merged [branchname]` #查看未合并到指定分支的分支  
 
 ## 删除branch  
->$ `git branch -d [branchname]` #删除指定分支，如果指定分支尚未合并则删除操作失败。  
+>$ `git branch -d [branchname]` #删除指定分支，如果指定分支尚未合并则删除操作失败    
+
 >$ `git branch -D [branchname]` #删除指定尚未合并的分支
 
 ## 修改branch名  
@@ -295,7 +337,9 @@ git将自动添加两个版本内容到冲突文件中，格式如下
 **禁止修改其他贡献者正在使用的分支名字**  
 **禁止修改其他贡献者正在使用的分支名字**  
 >$ `git branch --move bad-branch-name corrected-branch-name`  #在本地修改分支名字  
+
 >$ `git push --set-upstream origin corrected-branch-name` #推送正确名字的分支到远程  
+
 >$ `git push origin --delete bad-branch-name` #删除错误名字的分支到远程  
 
 ## 分支工作流程  
@@ -344,19 +388,29 @@ master这个分支你在local开发， 别人也开发了并推送到remote
 ![git fetch](../pic/git_fetch_update_remote_tracking_branches.jpg "git fetch")   
 
 ### 推送分支  
->$ `git push remotename branchname` #将本地分支推送到远程仓库  
->$ `git push remotename branchname:newname` #将本地分支推送到远程仓库，该分支在远程仓库重命名未  
+>$ `git push remotename branchname` #将本地分支推送到远程仓库    
+
+>$ `git push remotename branchname:newname` #将本地分支推送到远程仓库，该分支在远程仓库重命名未    
+
 >$ `git fetch remotename` #从远程仓库获得最新remote-tracking分支  
+
 >通过`get fetch`获得的remote-tracking分支的时候，比如`origin/iss53`,该分支在本地并不可以编辑开发。  
+
 >如果想要将`origin/iss53`合并到自己分支，可以使用`git merge origin/iss53`命令  
+
 >如果想要一个自己继续开发的iss53分支，可以使用`git checkout -b iss53 origin/iss53`命令
 
 ### 追踪分支  
 >$ `git checkout -b [branch] [romote]/[branch]` #从远程仓库拉取某个分支，用于自己开发  
+
 >$ `git checkout --track origin/serverfix` #从远程仓库拉去serverfix分支用于开发，这里使用`--track`参数   
+
 >$ `git checkout serverfix` #如果本地没有serverfix，远程仓库有唯一serverfix，那么也可直接`git checkout`来拉去远程分支  
+
 >$ `git checkout -b sf origin/serverfix` #从远程仓库origin拉取serverfix分支，并重命名为sf  
+
 >$ `git branch -u origin/serverfix` #设置本地分支关联到远程origin仓库的serverfix分支，或者修改本地分支关联的远程仓库分支  
+
 > `-u` 或者 `--set-upstream-to` 选项用于`git branch`命令关联本地分支与远程分支  
 > 
 
@@ -369,6 +423,7 @@ TIP:
 
 查看本地和远程分支关联信息  
 >$ `git branch -vv` #查看所有本地分支，并显示相关联的原程分支，以及commit提交差异信息  
+
     iss53 7e424c3 [origin/iss53: ahead 2] Add forgotten brackets  
     master 1ae2a45 [origin/master] Deploy index fix    
     serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] This should do it  
