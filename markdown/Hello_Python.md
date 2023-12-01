@@ -7,7 +7,7 @@
 >`spam_amount = spam_amount + 4`
 >
 >`if spam_amount > 0:`  
->    `print("But I don't want any spam!)`  
+>&emsp;&emsp;&emsp;&emsp;`print("But I don't want any spam!)`  
 >
 >`viking_song = "Spam " * spam_amount`  
 >`print(viking_somg)`   
@@ -33,7 +33,7 @@
 
 ## 代码块  
 >`if spam_amount > 0:`  
->    `print("But I don't want any spam!)`    
+>&emsp;&emsp;&emsp;&emsp;`print("But I don't want any spam!)`    
 #python中冒号代表代码块的起始，通过缩进(**四个空格**)表示代码块的所属。这里`if`条件语句判断变量`spam_amount`大于0时执行`print`函数。  
 
 ## 乘法重复
