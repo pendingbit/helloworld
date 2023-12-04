@@ -11,9 +11,9 @@
 >.global _start  
 >
 >_start:  
-> **#`CCM_CCGR1` 使能GPIO1外设时钟**   
+> **#`CCM_CCGR1` 使能GPIO1外设时钟,默认全部使能**   
 >ldr r0, =0x020c406c       
->ldr r1, =0x0c000000  
+>ldr r1, =0xffffffff  
 >str r1, [r0]  
 >  
 >**#`IOMUXC_SW_MUX_CTL_PAD_GPIO1_IO00` GPIO1_IO00引脚复用为GPIO1_IO00功能**  
