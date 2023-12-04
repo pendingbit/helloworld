@@ -36,7 +36,7 @@
 >&emsp;ldr r1, =0x1  
 >&emsp;str r1, [r0]   
 >&emsp;  
->&emsp;**#死循环,防止不可预计**
+>&emsp;**#死循环,防止不可预计**  
 >loop:  
 >&emsp;b loop  
   
