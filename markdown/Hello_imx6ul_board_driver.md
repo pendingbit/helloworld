@@ -34,12 +34,12 @@
 >  
 >**#`GPIO1_DR` 设置GPIO1_IO00输出高电平**  
 >ldr r0, =0x0209c000  
->dr r1, =0x1  
+>ldr r1, =0x1  
 >str r1, [r0]   
 >  
 >**#死循环,防止不可预计**  
 >loop:  
->&emsp;b loop  
+>b loop  
   
 
 
