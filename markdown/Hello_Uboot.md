@@ -127,3 +127,28 @@
 >=>`run bootemmc` //执行bootemmc中的启动指令  
 >=>`run bootnet` //执行bootnet中的启动指令  
 
+# uboot编译命令  
+## make distclean  
+
+
+
+## make xxx_defconfig  
+**编译fixdep主机工具**
+>`make -f ./scripts/Makefile.build obj=scripts/basic`  
+
+>`cc -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer     -o scripts/basic/fixdep scripts/basic/fixdep.c`  
+
+**编译conf主机工具**
+>`make -f ./scripts/Makefile.build obj=scripts/kconfig mx6ull_14x14_evk_emmc_defconfig`  
+
+>`cc -Wp,-MD,scripts/kconfig/.conf.o.d -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer   -I/usr/include/ncursesw -DCURSES_LOC="<curses.h>"  -DNCURSES_WIDECHAR=1 -DLOCALE   -c -o scripts/kconfig/conf.o scripts/kconfig/conf.c`
+
+>`cc -Wp,-MD,scripts/kconfig/.zconf.tab.o.d -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer   -I/usr/include/ncursesw -DCURSES_LOC="<curses.h>"  -DNCURSES_WIDECHAR=1 -DLOCALE  -Iscripts/kconfig -c -o scripts/kconfig/zconf.tab.o scripts/kconfig/zconf.tab.c`
+
+>`cc  -o scripts/kconfig/conf scripts/kconfig/conf.o scripts/kconfig/zconf.tab.o  `
+
+**调用conf工具生成.config文件**
+>`scripts/kconfig/conf  --defconfig=arch/../configs/mx6ull_14x14_evk_emmc_defconfig Kconfig`
+
+
+## make all  
