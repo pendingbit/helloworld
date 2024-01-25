@@ -11,9 +11,20 @@
 >`cp /configs/mx6ull_14x14_evk_emmc_defconfig /configs/mx6ull_joey_emmc_defconfig //新建defconfig文件并修改`  
 >`cp /include/configs/mx6ullevk.h /include/configs/mx6ull_joey_emmc.h //新建板子头文件并修改`  
 >`cp /board/freescale/mx6ullevk/ /board/freescale/mx6ull_joey_emmc/ -r //新建板子源文件并修改Makefile Kconfig等`   
->`vi /arch/arm/cpu/armv7/mx6/Kconfig //添加新板子配置信息`
+>`vi /arch/arm/cpu/armv7/mx6/Kconfig //修改Kconfig文件添加新板子配置信息`
+
+## 修改驱动  
+根据实际硬件差异修改对应驱动，驱动代码主要在`/board/freescale/mx6ull_joey_emmc/`目录的板子源文件`mx6ull_joey_emmc.c`中，修改`board_init`函数中对应的驱动代码。  
+
+## 重新编译  
+>`make distclean`  
+>`make mx6ull_joey_emmc_defconfig`  
+>`make -j16`
 
 # uboot启动  
+![uboot start flow](../pic/uboot_start_flow.png "uboot start flow")   
+ 
+
 
 
 
